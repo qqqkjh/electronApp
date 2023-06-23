@@ -2,7 +2,7 @@
   "name": "electron-vue",
   "author": "김지훈",
   "private": true,
-  "asarUnpack": ["**/*.node"],
+
   "version": "0.0.1",
   "main": "electron/electron.cjs",
   "type": "commonjs",
