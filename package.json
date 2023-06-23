@@ -2,7 +2,6 @@
   "name": "electron-vue",
   "author": "김지훈",
   "private": true,
-
   "version": "0.0.1",
   "main": "electron/electron.cjs",
   "type": "commonjs",
@@ -15,9 +14,11 @@
     "electron:dev": "concurrently -k \"cross-env BROWSER=none yarn dev\" \"yarn electron\"",
     "electron:builder": "electron-builder",
     "build:for:electron": "cross-env ELECTRON=true vite build",
-    "app:build": "yarn build:for:electron && yarn electron:builder"
+    "app:build": "yarn build:for:electron && yarn electron:builder",
+    "start": "electron ."
   },
   "dependencies": {
+    "osenv": "^0.1.5",
     "vue": "^3.2.47"
   },
   "devDependencies": {
@@ -49,6 +50,4 @@
       "output": "dist_electron"
     }
   }
-
-  
 }
