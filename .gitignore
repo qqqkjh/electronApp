@@ -5,6 +5,8 @@ dist-ssr
 *.local
 .vscode
 dist_electron
+dist_common
+payload-dist
 
 # Logs
 logs

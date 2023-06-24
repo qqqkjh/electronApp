@@ -1,9 +1,6 @@
 const { contextBridge, ipcMain, ipcRenderer } = require('electron')
-const API = require('./constants/apiConstant.js');
 
 
-
-//readFileList();
 contextBridge.exposeInMainWorld('versions', {
   node: () => process.versions.node,
   chrome: () => process.versions.chrome,
@@ -18,8 +15,6 @@ contextBridge.exposeInMainWorld('config', {
 
 })
 
-contextBridge.exposeInMainWorld('API', API)
-
 
 contextBridge.exposeInMainWorld('ipcRenderer', {
   send: (channel, data) => {
@@ -29,5 +24,3 @@ contextBridge.exposeInMainWorld('ipcRenderer', {
     ipcRenderer.on(channel, (event, ...args) => func(...args))
   }
 })
-
-

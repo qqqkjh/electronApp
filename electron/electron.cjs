@@ -1,24 +1,25 @@
 // electron/electron.js
 const path = require('path');
 const helpers = require('./helper');
-const API = require('./constants/apiConstant.js');
+const { API } = require('../dist_common/common.umd.js');
 
 const { app, BrowserWindow, ipcMain} = require('electron');
 
 const isDev = process.env.IS_DEV == "true" ? true : false;
 
 let mainWindow
-function createWindow() {
+async function createWindow() {
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
-      nodeIntegration: true,
+      nodeIntegration: false,
+      // contextIsolation: true, // protect against prototype pollution
+      // enableRemoteModule: false,
+      preload: path.join(__dirname, "preload.js")
     },
   });
-
   // and load the index.html of the app.
   // win.loadFile("index.html");
   mainWindow.loadURL(
@@ -41,6 +42,7 @@ function createWindow() {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
   createWindow()
+  
   app.on('activate', function () {
     // On macOS it's common to re-create a window in the app when the
     // dock icon is clicked and there are no other windows open.

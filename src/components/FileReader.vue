@@ -6,6 +6,9 @@
   
   <script>
   import { onMounted } from 'vue';
+  import common from '../../common/index.js'
+  
+  const {API} = common 
 
   export default {
  
@@ -18,6 +21,7 @@
           }
           
           const onClickButton = () =>{
+            console.log(API)
             generateClassFile()
           } 
   
