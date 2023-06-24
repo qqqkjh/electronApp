@@ -1,4 +1,5 @@
 const { contextBridge, ipcMain, ipcRenderer } = require('electron')
+const API = require('./constants/apiConstant.js');
 
 
 
@@ -16,6 +17,8 @@ contextBridge.exposeInMainWorld('config', {
   "initialValue": "example",
 
 })
+
+contextBridge.exposeInMainWorld('API', API)
 
 
 contextBridge.exposeInMainWorld('ipcRenderer', {

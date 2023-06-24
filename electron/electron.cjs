@@ -1,7 +1,7 @@
 // electron/electron.js
 const path = require('path');
-const readFileList = require('./helper/fileReader.js');
-const generateClassFile = require('./helper/generateClassFile.js');
+const helpers = require('./helper');
+const API = require('./constants/apiConstant.js');
 
 const { app, BrowserWindow, ipcMain} = require('electron');
 
@@ -33,8 +33,6 @@ function createWindow() {
   }else{
     mainWindow.webContents.openDevTools();
   }
-
-
   
 }
 
@@ -63,6 +61,6 @@ ipcMain.on('message-hello-main', () =>{
   mainWindow.webContents.send('message-hello-render', 'message-Hello-call')
 })
 
-ipcMain.on('generate-class-file', () => {
-  generateClassFile();
+ipcMain.on(API.GENERATE_CLASS_FILE, () => {
+  helpers.generateClassFile();
 });
