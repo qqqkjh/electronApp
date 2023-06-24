@@ -1,6 +1,9 @@
 const { contextBridge, ipcMain, ipcRenderer } = require('electron')
 
 const readFileList = require('./helper/fileReader.js');
+const generateClassFile = require('./helper/generateClassFile.js');
+
+
 //readFileList();
 contextBridge.exposeInMainWorld('versions', {
   node: () => process.versions.node,
@@ -8,3 +11,22 @@ contextBridge.exposeInMainWorld('versions', {
   electron: () => process.versions.electron
   // we can also expose variables, not just functions
 })
+
+contextBridge.exposeInMainWorld('config', {
+  "className": "MyClass",
+  "namespace": "MyNamespace",
+  "initialValue": "example",
+
+})
+
+
+contextBridge.exposeInMainWorld('ipcRenderer', {
+  send: (channel, data) => {
+    ipcRenderer.send(channel, data)
+  },
+  receive: (channel, func) => {
+    ipcRenderer.on(channel, (event, ...args) => func(...args))
+  }
+})
+
+
