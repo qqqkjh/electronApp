@@ -1,7 +1,5 @@
 const { contextBridge, ipcMain, ipcRenderer } = require('electron')
 
-const readFileList = require('./helper/fileReader.js');
-const generateClassFile = require('./helper/generateClassFile.js');
 
 
 //readFileList();
